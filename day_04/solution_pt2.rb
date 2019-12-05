@@ -28,10 +28,15 @@ class Solution
   end
 
   def adjacent_digits?
-    last = nil
+    last, idx = nil, 0
     "#{n}".each_char do |digit|
-      return true if digit == last
+      following = "#{n}"[idx + 1]
+      before_last = "#{n}"[idx - 2]
+      if digit == last && following != digit && before_last != digit
+        return true
+      end
       last = digit
+      idx += 1
     end
     false
   end
